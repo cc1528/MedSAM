@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import sys
 import time
+from skimage import exposure
+from skimage import img_as_ubyte
 from PyQt5.QtGui import (
     QBrush,
     QPainter,
@@ -44,7 +46,7 @@ torch.cuda.manual_seed(2023)
 np.random.seed(2023)
 
 SAM_MODEL_TYPE = "vit_b"
-MedSAM_CKPT_PATH = "work_dir/MedSAM/medsam_vit_b.pth"
+MedSAM_CKPT_PATH = r"C:\Users\cinth\Documentos\ams\data_science\actual_thesis\codes\MedSAM\work_dir\MedSAM\medsam_vit_b\medsam_vit_b.pth"
 MEDSAM_IMG_INPUT_SIZE = 1024
 
 if torch.backends.mps.is_available():
@@ -299,6 +301,19 @@ class Window(QWidget):
     def save_mask(self):
         out_path = f"{self.image_path.split('.')[0]}_mask.png"
         io.imsave(out_path, self.mask_c)
+
+
+    # Inside the Window class
+    # def save_mask(self):
+    #     out_path = f"{self.image_path.split('.')[0]}_mask.png"
+    #
+    #     # Apply histogram equalization to improve contrast
+    #     equalized_mask = exposure.equalize_hist(self.mask_c)
+    #
+    #     # Convert image to unsigned byte format
+    #     equalized_mask_uint8 = img_as_ubyte(equalized_mask)
+    #
+    #     io.imsave(out_path, equalized_mask_uint8)
 
     @torch.no_grad()
     def get_embeddings(self):

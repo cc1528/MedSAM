@@ -12,10 +12,19 @@ setup(
     version="0.0.1",
     author="Jun Ma",
     python_requires=">=3.9",
-    install_requires=["monai", "matplotlib", "scikit-image", "SimpleITK>=2.2.1", "nibabel", "tqdm", "scipy", "ipympl", "opencv-python", "jupyterlab", "ipywidgets"],
+    install_requires=["monai", "matplotlib", "scikit-image", "SimpleITK>=2.2.1", "nibabel", "tqdm", "scipy", "ipympl", "opencv-python", "jupyterlab", "ipywidgets", "tabulate"],
     packages=find_packages(exclude="notebooks"),
     extras_require={
         "all": ["pycocotools", "opencv-python", "onnx", "onnxruntime"],
         "dev": ["flake8", "isort", "black", "mypy"],
     },
 )
+
+#install einops - pagina conda einops
+#
+# conda config --add channels conda-forge
+# conda config --set channel_priority strict
+#
+# conda install einops
+
+#added tabulate
